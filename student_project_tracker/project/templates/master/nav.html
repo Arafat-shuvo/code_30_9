@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+<nav class="navbar navbar-expand-lg shadow-sm" style="background: #000000; border-bottom: 1px solid #1f1f1f;">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="{% url 'home' %}">Project Tracker</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <a class="navbar-brand fw-bold" href="{% url 'home' %}" style="color: #ffffff;">Project Tracker</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" style="border-color: #ffffff;">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -9,7 +9,7 @@
             <div class="ms-auto d-flex gap-2">
                 <a class="btn btn-outline-light" href="{% url 'home' %}">Home</a>
                 <a class="btn btn-outline-light" href="{% url 'login' %}">Login</a>
-                <a class="btn btn-primary" href="{% url 'register' %}">Register</a>
+                <a class="btn btn-primary" href="{% url 'register' %}" style="background: #ffffff; color: #000000; border-color: #ffffff;">Register</a>
             </div>
         </div>
     </div>

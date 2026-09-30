@@ -4,7 +4,6 @@ from django.db import models
 
 class UserModel(AbstractUser):
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=128)
     student_name = models.CharField(max_length=100)
     student_id = models.CharField(max_length=50, unique=True)
 
@@ -22,7 +21,7 @@ class ProjectModel(models.Model):
         ('Completed', 'Completed'),
     ]
 
-    project_name = models.CharField(max_length=200)
+    project_name = models.CharField(max_length=200, default='Untitled Project')
     project_description = models.TextField(default='', blank=True)
     project_image = models.ImageField(upload_to='project_images/', blank=True, null=True)
     project_status = models.CharField(max_length=20, choices=PROJECT_STATUS_CHOICES, default='Not started')
