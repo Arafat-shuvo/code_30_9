@@ -1,8 +1,7 @@
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 
-from .models import ProjectModel
+from .models import ProjectModel, UserModel
 
 
 def home(request):
@@ -31,9 +30,17 @@ def register(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
+        student_name = request.POST.get('student_name')
+        student_id = request.POST.get('student_id')
 
         if password == confirm_password:
-            User.objects.create_user(username=username, email=email, password=password)
+            UserModel.objects.create_user(
+                username=username,
+                email=email,
+                password=password,
+                student_name=student_name,
+                student_id=student_id,
+            )
             return redirect('login')
 
         return render(request, 'register.html', {'error': 'Passwords do not match.'})
@@ -43,18 +50,20 @@ def register(request):
 
 def add_student(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        dept = request.POST.get('dept')
-        image = request.FILES.get('image')
+        project_name = request.POST.get('project_name')
+        project_description = request.POST.get('project_description')
+        project_status = request.POST.get('project_status')
+        project_image = request.FILES.get('project_image')
 
         ProjectModel.objects.create(
-            user_name=name,
-            password=phone,
+            project_name=project_name,
+            project_description=project_description,
+            project_status=project_status,
+            project_image=project_image,
             created_by=request.user,
         )
 
-        return redirect('home')
+        return redirect('dashboard')
 
     return render(request, 'home.html')
 
